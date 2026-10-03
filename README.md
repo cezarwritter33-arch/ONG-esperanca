@@ -42,6 +42,4 @@ ong-esperanca/
 │   └── main.js
 │
 ├── .gitignore
-├── README.md
-├── cadastro.html
-└── cadastro.html.html
+└── README.md
