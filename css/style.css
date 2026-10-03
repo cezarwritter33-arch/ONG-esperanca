@@ -10,7 +10,7 @@
     --cor-primaria: #2E7D32;
     --cor-primaria-escura: #1B5E20;
     --cor-secundaria: #81C784;
-    --cor-destaque: #F9A825;
+    --cor-destaque: #1B5E20;
 
     --cor-fundo: #F5F7F5;
     --cor-superficie: #FFFFFF;
@@ -100,7 +100,6 @@ p {
 
 /* ========================================
    CABEÇALHO
-   FLEXBOX
    ======================================== */
 
 header {
@@ -117,7 +116,6 @@ header {
 
 /* ========================================
    NAVEGAÇÃO
-   FLEXBOX
    ======================================== */
 
 nav {
@@ -126,23 +124,41 @@ nav {
     gap: var(--espaco-3);
 }
 
+nav > a,
+.dropdown {
+    flex-shrink: 0;
+}
+
+nav a,
+.dropdown-toggle {
+    min-height: 44px;
+    padding: 8px 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: inherit;
+    font-size: var(--tamanho-texto);
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
 nav a {
     color: var(--cor-texto-claro);
-    text-decoration: none;
-    font-weight: bold;
 
     transition: 0.3s;
 }
 
 nav a:hover,
-nav a:focus {
+nav a:focus-visible {
     color: var(--cor-destaque);
 }
 
 
 /* ========================================
    CONTEÚDO PRINCIPAL
-   GRID DE 12 COLUNAS
    ======================================== */
 
 main {
@@ -216,7 +232,7 @@ a {
 }
 
 a:hover,
-a:focus {
+a:focus-visible {
     color: var(--cor-destaque);
 }
 
@@ -242,154 +258,6 @@ footer p {
 
 
 /* ========================================
-   BREAKPOINT 1
-   DESKTOP GRANDE
-   ======================================== */
-
-@media (max-width: 1200px) {
-
-    main {
-        width: 92%;
-    }
-
-    main section {
-        grid-column: span 12;
-    }
-}
-
-
-/* ========================================
-   BREAKPOINT 2
-   DESKTOP / NOTEBOOK
-   ======================================== */
-
-@media (max-width: 992px) {
-
-    header {
-        padding: var(--espaco-3) 4%;
-    }
-
-    main {
-        gap: var(--espaco-3);
-    }
-
-    main section {
-        padding: var(--espaco-3);
-    }
-}
-
-
-/* ========================================
-   BREAKPOINT 3
-   TABLET
-   ======================================== */
-
-@media (max-width: 768px) {
-
-    header {
-        flex-direction: column;
-        gap: var(--espaco-2);
-        text-align: center;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    main {
-        width: 92%;
-        gap: var(--espaco-3);
-    }
-
-    main section {
-        grid-column: span 12;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-}
-
-
-/* ========================================
-   BREAKPOINT 4
-   TABLET PEQUENO
-   ======================================== */
-
-@media (max-width: 576px) {
-
-    header {
-        padding: var(--espaco-2);
-    }
-
-    nav {
-        gap: var(--espaco-2);
-    }
-
-    main {
-        width: 94%;
-        padding: var(--espaco-4) 0;
-    }
-
-    main section {
-        padding: var(--espaco-3);
-    }
-
-    h2 {
-        font-size: var(--tamanho-h3);
-    }
-
-    section img {
-        margin: var(--espaco-2) 0;
-    }
-}
-
-
-/* ========================================
-   BREAKPOINT 5
-   CELULAR
-   ======================================== */
-
-@media (max-width: 480px) {
-
-    header {
-        padding: var(--espaco-2);
-    }
-
-    header h1 {
-        font-size: 24px;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--espaco-1);
-    }
-
-    main {
-        width: 92%;
-        padding: var(--espaco-3) 0;
-        gap: var(--espaco-2);
-    }
-
-    main section {
-        padding: var(--espaco-2);
-    }
-
-    h2 {
-        font-size: 22px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    address {
-        padding: var(--espaco-2);
-    }
-}
-/* ========================================
    MENU HAMBÚRGUER
    ======================================== */
 
@@ -402,6 +270,7 @@ footer p {
     color: var(--cor-texto-claro);
 
     font-size: 28px;
+
     cursor: pointer;
 }
 
@@ -420,10 +289,6 @@ footer p {
 
     color: var(--cor-texto-claro);
 
-    font-family: inherit;
-    font-size: var(--tamanho-texto);
-    font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -431,27 +296,37 @@ footer p {
     display: none;
 
     position: absolute;
+
     top: calc(100% + 8px);
     left: 0;
 
-    min-width: 200px;
+    min-width: 220px;
+
+    flex-direction: column;
+    gap: 4px;
+
+    padding: var(--espaco-1);
 
     background-color: var(--cor-superficie);
 
     border-radius: var(--raio);
-    box-shadow: var(--sombra);
 
-    padding: var(--espaco-1);
+    box-shadow: var(--sombra);
 
     z-index: 1000;
 }
 
 .dropdown-menu a {
-    display: block;
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+    min-height: 44px;
+
+    padding: 8px 12px;
 
     color: var(--cor-texto);
-
-    padding: var(--espaco-1) var(--espaco-2);
 
     text-decoration: none;
 
@@ -459,7 +334,7 @@ footer p {
 }
 
 .dropdown-menu a:hover,
-.dropdown-menu a:focus {
+.dropdown-menu a:focus-visible {
     background-color: var(--cor-secundaria);
     color: var(--cor-texto);
 }
@@ -471,41 +346,13 @@ footer p {
 
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu {
-    display: block;
+    display: flex;
 }
-@media (max-width: 480px) {
 
-    .menu-toggle {
-        display: block;
-    }
 
-    nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    nav.menu-aberto {
-        display: flex;
-    }
-
-    .dropdown {
-        width: 100%;
-        text-align: center;
-    }
-
-    .dropdown-menu {
-        position: static;
-        width: 100%;
-        box-shadow: none;
-    }
-}
 /* ========================================
    COMPONENTES DE FEEDBACK
    ======================================== */
-
-
-/* ---------- GRUPOS ---------- */
 
 .feedback-grupo {
     margin-top: var(--espaco-4);
@@ -537,24 +384,15 @@ footer p {
     font-weight: bold;
 }
 
-
-/* Badge ativo */
-
 .badge-ativo {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria-escura);
 }
 
-
-/* Badge em andamento */
-
 .badge-andamento {
     background-color: var(--cor-destaque);
     color: var(--cor-texto);
 }
-
-
-/* Badge concluído */
 
 .badge-concluido {
     background-color: var(--cor-primaria);
@@ -578,24 +416,15 @@ footer p {
     box-shadow: var(--sombra);
 }
 
-
-/* Sucesso */
-
 .alerta-sucesso {
     background-color: #E8F5E9;
     border-left-color: var(--cor-primaria);
 }
 
-
-/* Atenção */
-
 .alerta-atencao {
     background-color: #FFF8E1;
     border-left-color: var(--cor-destaque);
 }
-
-
-/* Erro */
 
 .alerta-erro {
     background-color: #FFEBEE;
@@ -644,7 +473,6 @@ footer p {
     border-radius: var(--raio);
 }
 
-
 .modal-conteudo {
     width: min(100%, 500px);
 
@@ -657,7 +485,6 @@ footer p {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
 }
 
-
 .modal-conteudo h3 {
     color: var(--cor-primaria-escura);
 
@@ -666,11 +493,13 @@ footer p {
 
 
 /* ========================================
-   BOTÃO DO MODAL
+   BOTÃO
    ======================================== */
 
 .botao {
     display: inline-block;
+
+    min-height: 44px;
 
     padding: 10px 20px;
 
@@ -694,20 +523,12 @@ footer p {
         transform 0.1s ease;
 }
 
-
 .botao:hover {
     background-color: var(--cor-primaria-escura);
     border-color: var(--cor-primaria-escura);
 
     box-shadow: var(--sombra);
 }
-
-
-.botao:focus {
-    outline: 3px solid var(--cor-destaque);
-    outline-offset: 2px;
-}
-
 
 .botao:active {
     transform: translateY(1px);
@@ -716,10 +537,118 @@ footer p {
 
 
 /* ========================================
-   RESPONSIVIDADE
+   ACESSIBILIDADE - FOCO VISÍVEL
+   ======================================== */
+
+:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 3px;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    min-height: 44px;
+}
+
+
+/* ========================================
+   BREAKPOINT 1
+   DESKTOP GRANDE
+   ======================================== */
+
+@media (max-width: 1200px) {
+
+    main {
+        width: 92%;
+    }
+}
+
+
+/* ========================================
+   BREAKPOINT 2
+   NOTEBOOK
+   ======================================== */
+
+@media (max-width: 992px) {
+
+    header {
+        padding: var(--espaco-3) 4%;
+    }
+
+    main {
+        gap: var(--espaco-3);
+    }
+
+    main section {
+        padding: var(--espaco-3);
+    }
+}
+
+
+/* ========================================
+   BREAKPOINT 3
+   TABLET
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: var(--espaco-2);
+
+        text-align: center;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    main {
+        width: 92%;
+        gap: var(--espaco-3);
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
+
+
+/* ========================================
+   BREAKPOINT 4
+   TABLET PEQUENO
    ======================================== */
 
 @media (max-width: 576px) {
+
+    header {
+        padding: var(--espaco-2);
+    }
+
+    nav {
+        gap: var(--espaco-2);
+    }
+
+    main {
+        width: 94%;
+        padding: var(--espaco-4) 0;
+    }
+
+    main section {
+        padding: var(--espaco-3);
+    }
+
+    h2 {
+        font-size: var(--tamanho-h3);
+    }
+
+    section img {
+        margin: var(--espaco-2) 0;
+    }
 
     .badges {
         flex-direction: column;
@@ -738,4 +667,341 @@ footer p {
     .modal-conteudo {
         padding: var(--espaco-3);
     }
+}
+
+
+/* ========================================
+   BREAKPOINT 5
+   CELULAR
+   ======================================== */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: var(--espaco-2);
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        gap: var(--espaco-1);
+    }
+
+    nav.menu-aberto {
+        display: flex;
+    }
+
+    nav > a,
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        position: static;
+
+        width: 100%;
+
+        margin-top: var(--espaco-1);
+
+        box-shadow: none;
+    }
+
+    main {
+        width: 92%;
+        padding: var(--espaco-3) 0;
+        gap: var(--espaco-2);
+    }
+
+    main section {
+        padding: var(--espaco-2);
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    address {
+        padding: var(--espaco-2);
+    }
+}
+/* ========================================
+   CORREÇÃO DEFINITIVA DO MENU
+======================================== */
+
+header {
+    position: relative;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav > a,
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 4px;
+
+    background: transparent;
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 1rem;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+nav > a:hover,
+.dropdown-toggle:hover {
+    background-color: #1B5E20;
+    color: #FFFFFF;
+}
+
+/* CONTAINER DO DROPDOWN */
+
+.dropdown {
+    position: relative;
+}
+
+/* BOTÃO PROJETOS */
+
+.dropdown-toggle {
+    margin: 0;
+}
+
+/* MENU QUE ABRE */
+
+.dropdown-menu {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+
+    min-width: 220px;
+
+    padding: 6px;
+
+    margin: 0;
+
+    flex-direction: column;
+    gap: 4px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #263238;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    z-index: 1000;
+}
+
+/* ITENS DO DROPDOWN */
+
+.dropdown-menu a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+    min-height: 44px;
+
+    box-sizing: border-box;
+
+    padding: 8px 12px;
+
+    color: #263238;
+    background-color: #FFFFFF;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    border-radius: 4px;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+    background-color: #2E7D32;
+    color: #FFFFFF;
+}
+
+/* ABERTURA PELO MOUSE/TECLADO */
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: flex;
+}
+
+/* FOCO VISÍVEL */
+
+nav a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #263238;
+    outline-offset: 3px;
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    nav > a,
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: flex-start;
+        box-sizing: border-box;
+    }
+
+    .dropdown {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+
+        width: 100%;
+        min-width: 0;
+
+        box-sizing: border-box;
+
+        box-shadow: none;
+
+        border: none;
+        border-radius: 0;
+
+        padding-left: 16px;
+    }
+
+    .dropdown-menu a {
+        white-space: normal;
+    }
+}
+/* ========================================
+   BOTÃO DE ACESSIBILIDADE
+======================================== */
+
+.botao-acessibilidade {
+    min-height: 44px;
+    padding: 8px 12px;
+
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+
+    background-color: #263238;
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.botao-acessibilidade:hover {
+    background-color: #FFFFFF;
+    color: #263238;
+}
+
+
+/* ========================================
+   MODO ALTO CONTRASTE
+======================================== */
+
+body.alto-contraste {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+body.alto-contraste header {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+body.alto-contraste main {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+body.alto-contraste footer {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste label,
+body.alto-contraste legend {
+    color: #FFFFFF;
+}
+
+body.alto-contraste a {
+    color: #FFFFFF;
+}
+
+body.alto-contraste button {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: #FFFFFF;
+}
+
+body.alto-contraste input,
+body.alto-contraste select,
+body.alto-contraste textarea {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+body.alto-contraste .dropdown-menu {
+    background-color: #000000;
+    border-color: #FFFFFF;
+}
+
+body.alto-contraste .dropdown-menu a {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+body.alto-contraste .dropdown-menu a:hover,
+body.alto-contraste .dropdown-menu a:focus {
+    background-color: #FFFFFF;
+    color: #000000;
 }

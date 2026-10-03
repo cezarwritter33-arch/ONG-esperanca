@@ -325,7 +325,25 @@ function renderizarPagina() {
 
     app.innerHTML = pagina;
 }
+// ========================================
+// MODO ALTO CONTRASTE
+// ========================================
 
+const botaoContraste = document.querySelector("#botao-contraste");
+
+botaoContraste.addEventListener("click", () => {
+
+    document.body.classList.toggle("alto-contraste");
+
+    const contrasteAtivo =
+        document.body.classList.contains("alto-contraste");
+
+    botaoContraste.setAttribute(
+        "aria-pressed",
+        contrasteAtivo
+    );
+
+});
 
 // ========================================
 // DETECTA MUDANÇAS NA URL
