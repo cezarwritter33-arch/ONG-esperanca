@@ -20,7 +20,7 @@ const paginas = {
             <h2>Quem somos</h2>
 
             <img
-                src="../imagens/ong.jpg"
+                src="./imagens/ong.jpg"
                 alt="Voluntários da ONG Esperança realizando uma ação social"
             >
 
